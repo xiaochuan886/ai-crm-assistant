@@ -4,7 +4,7 @@ status: backlog
 created: 2025-10-07T05:17:58Z
 progress: 0%
 prd: .claude/prds/frontend-architecture-overhaul.md
-github: [Will be updated when synced to GitHub]
+github: https://github.com/xiaochuan886/ai-crm-assistant/issues/1
 ---
 
 # Epic: frontend-widget-architecture
@@ -99,21 +99,20 @@ github: [Will be updated when synced to GitHub]
 - **CDN 服务**: 静态资源分发
 
 ## Tasks Created
-- [ ] 001.md - 项目架构搭建 (parallel: false, depends_on: [])
-- [ ] 002.md - 跨域通信系统 (parallel: false, depends_on: [001])
-- [ ] 003.md - 样式和主题系统 (parallel: true, depends_on: [001])
-- [ ] 004.md - Widget 核心组件 (parallel: true, depends_on: [001, 002, 003])
-- [ ] 005.md - AI 交互界面 (parallel: true, depends_on: [001, 002, 003])
-- [ ] 006.md - 状态管理系统 (parallel: true, depends_on: [001, 002, 003])
-- [ ] 007.md - 性能优化 (parallel: true, depends_on: [001, 002, 003, 004, 005, 006])
-- [ ] 008.md - 安全加固 (parallel: true, depends_on: [001, 002, 003, 004, 005, 006])
-- [ ] 009.md - 测试和部署 (parallel: true, depends_on: [001, 002, 003, 004, 005, 006])
+- [ ] #2 - 项目架构搭建 (parallel: false, depends_on: [])
+- [ ] #3 - 跨域通信系统 (parallel: false, depends_on: [2])
+- [ ] #4 - 样式和主题系统 (parallel: true, depends_on: [2])
+- [ ] #5 - Widget 核心组件 (parallel: true, depends_on: [2, 3, 4])
+- [ ] #6 - AI 交互界面 (parallel: true, depends_on: [2, 3, 4])
+- [ ] #7 - 状态管理系统 (parallel: true, depends_on: [2, 3, 4])
+- [ ] #8 - 性能优化 (parallel: true, depends_on: [2, 3, 4, 5, 6, 7])
+- [ ] #9 - 安全加固 (parallel: true, depends_on: [2, 3, 4, 5, 6, 7])
+- [ ] #10 - 测试和部署 (parallel: true, depends_on: [2, 3, 4, 5, 6, 7])
 
 Total tasks: 9
 Parallel tasks: 6
 Sequential tasks: 3
 Estimated total effort: 82 hours
-
 ## Success Criteria (Technical)
 
 ### 性能指标
