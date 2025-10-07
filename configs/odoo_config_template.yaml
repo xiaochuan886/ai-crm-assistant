@@ -1,0 +1,226 @@
+# Odoo Enhanced Adapter Configuration Template
+# Copy this file and modify according to your Odoo setup
+
+# Basic Odoo Connection Settings
+odoo:
+  url: "https://your-odoo-instance.com"  # Your Odoo URL
+  db: "your_database_name"                # Database name
+  username: "your_username"               # Username
+  password: "your_password"               # Password
+  timeout: 30                            # Request timeout in seconds
+  enable_caching: true                   # Enable response caching
+
+# AI Service Configuration
+ai_service:
+  provider: "openai"                     # openai, claude, or mock
+  api_key: "your-api-key"                # AI service API key
+  model: "gpt-4"                         # AI model name
+  temperature: 0.1                       # Sampling temperature
+  max_tokens: 500                        # Maximum response tokens
+
+# Custom Field Mapping (Optional)
+# Maps standard field names to your custom Odoo field names
+custom_field_mapping:
+  # Example: Map standard 'company' field to custom 'parent_company_id'
+  # company: "parent_company_id"
+
+  # Example: Map standard 'notes' field to custom 'internal_notes'
+  # notes: "internal_notes"
+
+  # Add more mappings as needed
+
+# Business Rules Configuration (Optional)
+business_rules:
+  # Customer validation rules
+  customer:
+    required_fields:
+      - "name"
+      - "email"    # Uncomment to make email required
+
+    field_formats:
+      email: "email"     # Validate email format
+      phone: "phone"     # Basic phone validation
+
+    custom_rules:
+      # Example: Ensure company name doesn't contain forbidden words
+      - type: "condition"
+        condition: "'spam' in data.get('company', '').lower()"
+        message: "Company name cannot contain restricted words"
+
+      # Example: Validate phone number length
+      - type: "condition"
+        condition: "len(data.get('phone', '')) < 10"
+        message: "Phone number must be at least 10 digits"
+
+  # Product validation rules
+  product:
+    required_fields:
+      - "name"
+
+    field_formats:
+      sku: "alphanumeric"
+
+    custom_rules:
+      # Add product-specific validation rules here
+
+  # Order validation rules
+  order:
+    required_fields:
+      - "partner_id"
+
+    custom_rules:
+      # Example: Minimum order amount
+      - type: "condition"
+        condition: "data.get('amount_total', 0) < 10"
+        message: "Order amount must be at least $10"
+
+# Advanced Settings (Optional)
+advanced:
+  # Batch operation settings
+  batch_size: 50                        # Max records per batch operation
+  batch_timeout: 120                    # Timeout for batch operations in seconds
+
+  # Search settings
+  default_search_limit: 20              # Default limit for search operations
+  max_search_limit: 100                 # Maximum allowed search limit
+
+  # Field synchronization
+  sync_fields:
+    # Fields to sync when creating customers
+    customer_create:
+      - "name"
+      - "email"
+      - "phone"
+      - "company_name"
+      - "street"
+
+    # Fields to sync when updating customers
+    customer_update:
+      - "email"
+      - "phone"
+      - "street"
+
+  # Logging settings
+  logging:
+    level: "INFO"                       # DEBUG, INFO, WARNING, ERROR
+    log_requests: true                  # Log all API requests
+    log_responses: false                # Log API responses (may be verbose)
+
+# Feature Flags (Optional)
+features:
+  enable_lead_management: true          # Enable CRM lead creation
+  enable_batch_operations: true         # Enable batch create/update
+  enable_custom_field_mapping: true     # Enable field mapping
+  enable_business_rules: true           # Enable business rule validation
+  enable_advanced_search: true          # Enable advanced search features
+  enable_variant_support: true          # Enable product variant support
+
+# Environment Settings
+environment:
+  # Development environment overrides
+  development:
+    timeout: 60                         # Longer timeout for debugging
+    enable_caching: false               # Disable caching for fresh data
+    logging:
+      level: "DEBUG"
+      log_requests: true
+      log_responses: true
+
+  # Production environment overrides
+  production:
+    timeout: 30
+    enable_caching: true
+    logging:
+      level: "WARNING"
+      log_requests: false
+      log_responses: false
+
+# Security Settings (Optional)
+security:
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 100
+    burst_size: 20
+
+  # Data masking (for logging)
+  mask_sensitive_data:
+    enabled: true
+    fields_to_mask:
+      - "password"
+      - "api_key"
+      - "credit_card"
+
+  # IP restrictions (if applicable)
+  ip_whitelist: []                      # List of allowed IP addresses
+
+# Monitoring and Analytics (Optional)
+monitoring:
+  # Performance metrics
+  enable_metrics: true
+  metrics_interval: 300                  # Collect metrics every 5 minutes
+
+  # Error tracking
+  enable_error_tracking: true
+  error_webhook: "https://your-error-tracking-url.com"
+
+  # Usage analytics
+  enable_usage_analytics: true
+  analytics_webhook: "https://your-analytics-url.com"
+
+# Integration Settings (Optional)
+integrations:
+  # Email integration
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: "your-email@gmail.com"
+    password: "your-app-password"
+
+  # SMS integration
+  sms:
+    enabled: false
+    provider: "twilio"                  # twilio, nexmo, etc.
+    api_key: "your-sms-api-key"
+
+  # Webhook notifications
+  webhooks:
+    enabled: false
+    urls:
+      - event: "customer.created"
+        url: "https://your-webhook-url.com/customer-created"
+      - event: "order.created"
+        url: "https://your-webhook-url.com/order-created"
+
+# Localization Settings (Optional)
+localization:
+  # Default language and timezone
+  default_language: "en_US"
+  default_timezone: "UTC"
+
+  # Date/time formats
+  date_format: "%Y-%m-%d"
+  time_format: "%H:%M:%S"
+  datetime_format: "%Y-%m-%d %H:%M:%S"
+
+  # Currency settings
+  default_currency: "USD"
+  currency_symbol: "$"
+
+# Backup and Recovery (Optional)
+backup:
+  # Automatic backup settings
+  enabled: false
+  frequency: "daily"                    # hourly, daily, weekly
+  retention_days: 30                    # Keep backups for 30 days
+
+  # Backup location
+  location: "local"                     # local, s3, gcs, etc.
+  path: "/backups/odoo-adapter"
+
+  # Backup encryption
+  encryption:
+    enabled: true
+    algorithm: "AES256"
+    key: "your-encryption-key"

@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+requests
+pydantic
+pyyaml
+httpx
+odoo-client-lib
+langchain
+langchain-core
+langchain-openai
+langchain-community
+langgraph

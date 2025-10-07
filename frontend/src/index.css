@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  /* 消息气泡样式 */
+  .message-bubble {
+    @apply max-w-[70%] px-4 py-2 rounded-2xl;
+  }
+
+  .message-user {
+    @apply bg-primary-500 text-white ml-auto;
+  }
+
+  .message-ai {
+    @apply bg-white text-gray-900 border border-gray-200;
+  }
+
+  /* 输入框样式 */
+  .chat-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-primary-500
+           focus:border-transparent resize-none;
+  }
+
+  /* 按钮样式 */
+  .btn-primary {
+    @apply bg-primary-500 text-white px-4 py-2 rounded-lg
+           hover:bg-primary-600 focus:outline-none focus:ring-2
+           focus:ring-primary-500 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg
+           hover:bg-gray-200 focus:outline-none focus:ring-2
+           focus:ring-gray-500 focus:ring-offset-2
+           transition-colors duration-200;
+  }
+
+  /* 连接状态指示器 */
+  .status-indicator {
+    @apply w-2 h-2 rounded-full mr-2;
+  }
+
+  .status-connected {
+    @apply bg-green-500;
+  }
+
+  .status-connecting {
+    @apply bg-yellow-500 animate-pulse;
+  }
+
+  .status-disconnected {
+    @apply bg-red-500;
+  }
+
+  /* 打字指示器 */
+  .typing-indicator {
+    @apply flex space-x-1 px-2 py-1;
+  }
+
+  .typing-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-bounce;
+  }
+
+  .typing-dot:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 150ms;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 300ms;
+  }
+}
